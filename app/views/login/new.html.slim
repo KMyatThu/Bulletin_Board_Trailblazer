@@ -1,0 +1,19 @@
+div
+  .middle-box.text-center.loginscreen.animated.fadeInDown
+    div
+      h1.logo-name
+    h3
+      | User Login
+    / = form_with model: resource, url: session_path(resource_name), as: resource_name, local: true do |f|
+    /   .form-group
+    /     = f.email_field :email, class: "form-control", placeholder: "メールアドレス"
+    /   .form-group
+    /     = f.password_field :password, class: "form-control", placeholder: "パスワード"
+    /   .form-group
+    /     = f.submit "ログイン", class: "btn btn-primary block full-width m-b"
+    /   = link_to new_admin_account_password_path do
+    /     small
+    /       | パスワードを忘れた方
+    / p.m-t
+    /   small
+    /     | トルー All rights reserved © 2018

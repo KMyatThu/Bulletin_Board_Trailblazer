@@ -1,0 +1,25 @@
+div.card.card_option.card_margin
+  div.card-header.bg-success.text-white.border.border-success User List
+  div.card-body
+    table.table.table-bordered.table-hover
+      thead
+        tr.bg-info.text-white
+          th Name 
+          th Email
+          th Type
+          th Phone
+          th Date of Birth 
+          th Address 
+          th Created_date 
+          th Updated_date 
+      tbody
+        - @users.each do |user|
+          tr
+            td = UserDecorator.decorate(user).full_name
+            td = user.email
+            td = user.role == "0" ? 'Admin' : 'User' 
+            td = user.phone 
+            td = user.dob.strftime('%Y/%m/%d') if user.dob.present?
+            td = user.address 
+            td = user.decorate.time_decorate(user.created_at)
+            td = user.decorate.time_decorate(user.updated_at)
