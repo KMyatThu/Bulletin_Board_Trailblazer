@@ -1,0 +1,19 @@
+div
+  .middle-box.text-center.login
+    div
+      h1.logo-name
+    h3
+      | Post Create
+    = form_with model: @form, url: post_path , method: :patch do |f|
+      .form-group
+        label Title
+        = f.text_field :title, class: "form-control", placeholder: "Title"
+      .form-group
+        label Date of Birth
+        = f.text_field :description, class: "form-control", placeholder: "Description"
+        = f.check_box :status
+        = f.hidden_field :create_user_id, value: 1
+        = f.hidden_field :updated_user_id, value: 1
+      .form-group 
+        = f.submit "Create", class: "btn btn-primary block full-width m-b"
+

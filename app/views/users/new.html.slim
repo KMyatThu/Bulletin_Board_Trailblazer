@@ -1,8 +1,22 @@
-.card.border.border-success
-  .card-header.bg-success.text-white.border.border-success
-    .row.m-t-lg
-      .col-sm-12
-        table.table.table-striped-gray-bg.gray-bg
-          thead.thead.bg-cadetblue.text-white
-          
-    
+div
+  .middle-box.text-center.login
+    div
+      h1.logo-name
+    h3
+      | User Create
+    = form_with model: @form, url: users_path , method: :post do |f|
+      .form-group
+        label Name
+        = f.text_field :name, class: "form-control", placeholder: "Name"
+      .form-group
+        label Email
+        = f.email_field :email, class: "form-control", placeholder: "Email Address"
+      .form-group
+        label Password
+        = f.password_field :password, class: "form-control", placeholder: "Password"
+      .form-group
+        label Date of Birth
+        = f.text_field :name, class: "form-control", placeholder: "Date of Birth"
+      .form-group 
+        = f.submit "Login", class: "btn btn-primary block full-width m-b"
+

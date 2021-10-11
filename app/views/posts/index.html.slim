@@ -1,0 +1,23 @@
+div.card.card_option.card_margin
+  div.card-header.bg-success.text-white.border.border-success User List
+  div.card-body
+    table.table.table-bordered.table-hover
+      thead
+        tr
+          th title 
+          th Description
+          th Type
+          th Options
+      tbody
+        - @model.each do |post|
+          tr
+            td = post.title
+            td = post.description
+            td = post.status == 0 ? 'Unactive' : 'Active' 
+            td 
+                = link_to 'Edit', edit_post_path(post), class: 'btn btn-green button'
+                = button_to 'Delete', post_path(post),
+                      data: { confirm: "Are you sure?" },
+                      method: :delete
+
+    = link_to 'New Post', new_post_path
