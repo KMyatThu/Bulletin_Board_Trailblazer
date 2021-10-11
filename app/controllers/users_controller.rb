@@ -5,10 +5,4 @@ class UsersController < ApplicationController
       @users = op["model"]
     end
   end
-
-  #User Create
-  def create
-    dd
-    run User::Operation::Create.process()
-  end
 end
