@@ -1,5 +1,17 @@
-div.card.card_option.card_margin
+div.card.border.border-success.card_option.card_margin
   div.card-header.bg-success.text-white.border.border-success User List
+
+  div.container.d-flex.flex-row-reverse.py-4
+    = form_tag search_posts_path, class:'row g-3', method: :get do
+    div.col-auto.align-self-center
+      label Name: 
+    div.col-auto
+      = text_field_tag :name, params[:name], class: "form-control border border-success"
+    div.col-auto.align-self-center
+      label Name: 
+    div.col-auto
+      = text_field_tag :name, params[:name], class: "form-control border border-success"
+
   div.card-body
     table.table.table-bordered.table-hover
       thead
@@ -11,15 +23,20 @@ div.card.card_option.card_margin
           th Date of Birth 
           th Address 
           th Created_date 
-          th Updated_date 
+          th Updated_date
+          th Operation
       tbody
         - @users.each do |user|
           tr
-            td = UserDecorator.decorate(user).full_name
+            td = link_to UserDecorator.decorate(user).full_name, user_path(user)
             td = user.email
             td = user.role == "0" ? 'Admin' : 'User' 
             td = user.phone 
             td = user.dob.strftime('%Y/%m/%d') if user.dob.present?
-            td = user.address 
+            td = user.address
             td = user.decorate.time_decorate(user.created_at)
             td = user.decorate.time_decorate(user.updated_at)
+            td 
+               = link_to 'edit', edit_user_path(user), class: 'btn btn-primary'
+               = link_to 'delete', user_path(user), class: 'btn btn-danger', method: :delete,
+               data: { confirm: "Are you sure?" }

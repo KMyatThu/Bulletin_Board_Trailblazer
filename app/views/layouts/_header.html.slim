@@ -1,0 +1,17 @@
+nav.navbar.navbar-expand-lg.bg-light
+  div.container-fluid
+    a.navbar-brand.text-success href="/posts" Bulletin_Board
+    button.navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      span.navbar-toggler-icon
+    div.collapse.navbar-collapse id="navbarSupportedContent"
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          a.nav-link.active.text-success aria-current="page" href="/users" Users
+        li.nav-item
+          a.nav-link.text-success href="/posts" Posts
+    li.nav-item.navbar-nav.dropdown.d-flex
+      a.nav-link.text-success href="#{new_user_path}" Create User
+      a.nav-link.dropdown-toggle.text-success href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" #{current_user.name}
+      div.dropdown-menu aria-labelledby="navbarDropdown"
+        a.dropdown-item href="/users/#{current_user.id}/profile" Profile
+        = link_to "Logout", login_path, method: :delete, class: "dropdown-item"

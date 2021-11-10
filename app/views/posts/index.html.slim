@@ -1,23 +1,40 @@
-div.card.card_option.card_margin
-  div.card-header.bg-success.text-white.border.border-success User List
-  div.card-body
+div.card.card_margin.border.border-success.card_option.card_margin
+  div.card-header.bg-success.border.border-success.text-white Post List
+
+  div.container.d-flex.flex-row-reverse.py-4
+    = form_tag search_posts_path, class:'row g-3', method: :get do
+      div.col-auto.align-self-center 
+        label KeyWord
+      div.col-auto
+        = text_field_tag :keyword, params[:keyword], class: "form-control border border-success", style: "width:250px"
+      div.col-auto
+        = submit_tag ("Search"), class: 'btn btn-success custom_button'
+      div.col-auto
+        = link_to "Create", new_post_path, class: 'btn btn-success custom_button'
+      div.col-auto
+        = link_to "Upload", upload_posts_path, class: 'btn btn-success custom_button'
+      div.col-auto
+        = link_to "Download", posts_path(format: :csv), class: 'btn btn-success custom_button'
+
+  div.card-body 
     table.table.table-bordered.table-hover
       thead
-        tr
-          th title 
-          th Description
-          th Type
-          th Options
+        tr.p-3.mb-2.text-center
+          th Post title
+          th Post Description
+          th Posted User
+          th Posted Date
+          th Operation
       tbody
-        - @model.each do |post|
-          tr
-            td = post.title
-            td = post.description
-            td = post.status == 0 ? 'Unactive' : 'Active' 
-            td 
-                = link_to 'Edit', edit_post_path(post), class: 'btn btn-green button'
-                = button_to 'Delete', post_path(post),
-                      data: { confirm: "Are you sure?" },
-                      method: :delete
-
+        - @model.each do |post| 
+            tr.text-center
+              td = post.title
+              td = post.description
+              td = post.create_user_id
+              td = UserDecorator.decorate(post).time_decorate(post.updated_at)
+              td 
+                = link_to 'edit', edit_post_path(post), class: 'btn btn-primary'
+                = link_to 'delete', post_path(post), class: 'btn btn-danger',
+                              method: :delete,
+                              data: { confirm: "Are you sure?" }
     = link_to 'New Post', new_post_path

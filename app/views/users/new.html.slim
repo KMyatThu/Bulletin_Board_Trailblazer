@@ -1,0 +1,46 @@
+div
+  .middle-box.text-center.login
+    div
+      h1.logo-name
+    h3
+      | User Create
+    = form_with model: @form, url: users_path ,html: {autocomplete: 'off'}, method: :post do |f|
+      .form-group
+        label Name
+        = f.text_field :name, class: "form-control", placeholder: "Name"
+      .form-group
+        label Email
+        = f.email_field :email, class: "form-control", placeholder: "Email Address"
+      .form-group
+        label Password
+        = f.password_field :password, class: "form-control", placeholder: "Password"
+
+      .form-group
+        label Confirm Password
+        = f.password_field :password_confirmation, class: "form-control", placeholder: "Password"
+        - if @form.errors[:password_confirmation].any?
+            .text-danger #{ @form.errors[:password_confirmation][0] }
+
+      .form-group
+        label Type
+        = f.select(:role, options_for_select(Constants::TYPES), {}, {:class => "form-control"})
+
+      .form-group
+        label Phone
+        = f.text_field :phone, class: "form-control", placeholder: "Phone"
+      .form-group
+        label Address
+        = f.text_field :address, class: "form-control", placeholder: "Address"
+      / .form-group
+      /   label Date of Birth
+      /   = f.date_field :dob, class: "form-control"
+      .form-group
+        label Profile
+        = f.file_field :profile, class: "form-control"
+        = f.hidden_field :dob, value: Time.now
+        / = f.hidden_field :role, value: 1
+        / = f.hidden_field :create_user_id, value: 1
+        / = f.hidden_field :updated_user_id, value: 1
+      .form-group 
+        = f.submit "Create", class: "btn btn-primary block full-width m-b"
+

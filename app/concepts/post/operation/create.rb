@@ -5,11 +5,13 @@ class Post::Operation::Create < Trailblazer::Operation
     end
   
     step Nested( Present )
+    step :created_user_and_status!
     step Contract::Validate( key: :post )
     step Contract::Persist( )
-    step :notify!
-  
-    def notify!(options, model:, **)
-      options["result.notify"] = Rails.logger.info("New blog post #{model.title}.")
+
+    def created_user_and_status!(options, **)
+      options[:params][:post][:status] = 1
+      options[:params][:post][:create_user_id] = options[:current_user][:id]
+      options[:params][:post][:updated_user_id] = options[:current_user][:id]
     end
 end

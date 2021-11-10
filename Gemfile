@@ -22,12 +22,16 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem "trailblazer-rails"           #TrailBlazer rails
-gem "reform-rails"                #Reform for rails
-gem "slim-rails", "~> 3.1.2"      #slim with rails
-gem "draper"                      #decorators with draper
+gem 'trailblazer-rails'         #TrailBlazer rails
+gem "reform-rails"                      #Reform for rails
+gem "slim-rails", "~> 3.1.2"                #slim with rails
+gem "draper"                                #decorators with draper
 gem 'bootstrap', '~> 4.0'
 gem 'jquery-rails'
+gem "carrierwave", "~> 1.2.1"               #image_upload
+gem "mini_magick"                           #image_resizing
+gem 'devise'
+gem 'byebug'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

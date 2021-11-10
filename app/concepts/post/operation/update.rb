@@ -1,11 +1,8 @@
 module Post::Operation
   class Update < Trailblazer::Operation
     class Present < Trailblazer::Operation
-      step :model!
+      step Model(Post, :find_by)
       step self::Contract::Build(constant: Post::Contract::Create)
-      def model!(options, params:, **)
-        options["model"] = PostService.getPostById(params[:id])
-      end
     end
     class Delete < Trailblazer::Operation
       step :delete!

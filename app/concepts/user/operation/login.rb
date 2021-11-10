@@ -4,7 +4,9 @@ module User::Operation
   
       def model!(options, params:, **)
         user = User.find_by(email: params[:email])
-        true if user && user.authenticate(params[:password])
+        if user && user.authenticate(params[:password])
+          return options["user"] = user
+        end
       end
     end
   end

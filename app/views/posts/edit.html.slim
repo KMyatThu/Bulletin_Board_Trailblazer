@@ -8,6 +8,9 @@ div
       .form-group
         label Title
         = f.text_field :title, class: "form-control", placeholder: "Title"
+        div.text-danger
+          - if @form.errors[:title].any?
+              .error-msg This  #{ @form.errors[:title][0] }
       .form-group
         label Date of Birth
         = f.text_field :description, class: "form-control", placeholder: "Description"
@@ -15,5 +18,5 @@ div
         = f.hidden_field :create_user_id, value: 1
         = f.hidden_field :updated_user_id, value: 1
       .form-group 
-        = f.submit "Create", class: "btn btn-primary block full-width m-b"
+        = f.submit "Edit", class: "btn btn-primary block full-width m-b"
 

@@ -1,0 +1,28 @@
+div.card.card_option.card_margin.border.border-success.mx-auto
+  div.card-header.bg-success.text-white.border.border-success Profile
+  div.card-body.my-3
+    div.row.p-3
+      div.col-4.form-group
+        div.img.text-center
+          = image_tag @model.profile.to_s, style: 'height:120px;width:auto;'
+      div.col-8
+        div.col-12
+          div.form-group.row.mb3
+            div.col-sm-3 Name 
+            div.col-sm-9 #{@model.name}
+          div.form-group.row.mb3
+            div.col-sm-3 Type 
+            div.col-sm-9 #{@model.role == '0' ? 'Admin' : 'User'}
+          div.form-group.row.mb3
+            div.col-sm-3 Email 
+            div.col-sm-9 #{@model.email}
+          div.form-group.row.mb3
+            div.col-sm-3 Phone 
+            div.col-sm-9 #{@model.phone}
+          div.form-group.row.mb3
+            div.col-sm-3 Date of Birth 
+            div.col-sm-9 #{@model.dob}
+          div.form-group.row.mb3
+            div.col-sm-3 Address
+            div.col-sm-9 #{@model.address}
+          a.btn.btn-primary href="#" Edit Profile

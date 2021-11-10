@@ -2,7 +2,8 @@ module User::Contract
   class Base < Reform::Form
     property :name
     property :email
-    property :password_digest
+    property :password
+    property :password_confirmation
     property :profile
     property :role
     property :phone
@@ -15,7 +16,11 @@ module User::Contract
 
     validates :name, presence: true
     validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-    validates :profile, 
+    # validates :email, presence: true, length: { maximum: 100 },
+    #                   format: { with: URI::MailTo::EMAIL_REGEXP },
+    #                   unique: true
+    validates :password, presence: true, confirmation: true
+    validates :profile,
               :role,
               :create_user_id,
               :updated_user_id, presence: true

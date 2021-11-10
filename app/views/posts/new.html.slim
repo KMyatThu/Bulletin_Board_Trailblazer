@@ -8,12 +8,19 @@ div
       .form-group
         label Title
         = f.text_field :title, class: "form-control", placeholder: "Title"
+        div.text-danger
+          - if @form.errors[:title].any?
+              .error-msg This  #{ @form.errors[:title][0] }
       .form-group
-        label Date of Birth
+        label Description
         = f.text_field :description, class: "form-control", placeholder: "Description"
-        = f.check_box :status
-        = f.hidden_field :create_user_id, value: 1
-        = f.hidden_field :updated_user_id, value: 1
+        div.text-danger
+          - if @form.errors[:description].any?
+              .error-msg This  #{ @form.errors[:description][0] }
+        / = f.hidden_field :status, value: 1
+        / = f.hidden_field :create_user_id, value: current_user.id
+        / = f.hidden_field :updated_user_id, value: current_user.id
       .form-group 
         = f.submit "Create", class: "btn btn-primary block full-width m-b"
+        = button_tag "Cancel", :type => 'reset', class: "btn btn-secondary block full-width m-b"
 
